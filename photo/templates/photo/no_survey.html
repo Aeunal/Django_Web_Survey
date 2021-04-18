@@ -1,0 +1,80 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>label me</title>
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  </head>
+  <style>
+
+  *{
+    box-sizing:border-box;
+    padding:0;
+    margin:0;
+  }
+  
+
+    .questions {
+      background-repeat: no-repeat; 
+      background-size: auto; 
+      border: 3px solid #010801; 
+      border-radius: 3px; 
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+      background-color: cadetblue;
+      background-repeat: repeat; 
+      background-attachment: scroll;
+      background-clip: border-box;
+      background-size: cover;
+      object-fit:contain;
+      max-width: 85%;
+      margin-left: 7.5%;
+      margin-top: 3%;
+      margin-bottom: 5%;
+      padding-bottom: 2vmin;
+      text-align:center;
+      color: whitesmoke;
+    }
+    .questions p {
+      font-size: 2vmax;
+      margin-top: 1%;
+    }
+
+    .container-fluid {
+      width:100%;
+      border:2px solid black;
+      display:grid;
+      height:100%;
+    }
+    .left {
+      display:flex;
+      flex-direction:column;
+      background-color: darkgray;
+      background-clip: border-box;
+      background-size: 100% 100%;
+      text-align: center; 
+      justify-content:flex-start;
+      padding-top: 3vh;
+    }
+
+
+  </style>
+
+  <body >
+    <div class="container-fluid" >
+        <div class="left" >
+          
+          <div style="overflow-x:auto;" class="questions">
+              <h1>Şu anda yapılacak bir anket bulunmamaktadır. Düşünmeniz bile yeterli. Teşekkür Ederiz.
+                  (Sayfayı Kapatabilirsiniz.)
+              </h1><br>
+              <h1>Furkan ÇELİK</h1>
+          </div>
+        </div>      
+    </div>
+  
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+  </body>
+</html>
