@@ -7,7 +7,7 @@ types = (1,2)
 gender = ('Bedroom', 'Livingroom', 'Bathroom', 'Kitchen')
 quality = ('kötü', 'orta', 'iyi')
 size = 24
-def_ans = ([-1]-size)
+def_ans = ([-1]*size)
 
 while True:
     if len(Photos.objects.filter(using_count=10)) >= len(Photos.objects.all())-23:
