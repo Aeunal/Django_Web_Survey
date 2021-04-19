@@ -6,11 +6,13 @@ i = 1
 types = (1,2)
 gender = ('Bedroom', 'Livingroom', 'Bathroom', 'Kitchen')
 quality = ('kötü', 'orta', 'iyi')
+size = 24
+def_ans = ([-1]-size)
 
 while True:
     if len(Photos.objects.filter(using_count=10)) >= len(Photos.objects.all())-23:
         break
-    new_ct = Counter(id=i, ids=[], ans1=[], ans2=[], ans3=[])
+    new_ct = Counter(id=i, ids=[], ans1=def_ans, ans2=def_ans, ans3=def_ans)
     i = i + 1
     for e in gender:
         for f in quality:

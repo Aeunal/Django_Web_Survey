@@ -3,7 +3,7 @@ from photo.models import Photos
 import os
 
 path = 'media/'
-abs_path = "C:/Users/furka/Desktop/form/media"
+abs_path = "C:/Users/aeuna/Desktop/git/django/adesso/Django_Web_Survey/media"
 i = 1
 
 for clas in os.listdir(abs_path):
