@@ -25,3 +25,10 @@ while True:
                     new_ct.ids.append(photo.id)
                     break
     new_ct.save()
+    
+    for i in Counter.objects.all():
+        for j in range(24):
+            i.ans1.append(-1)
+            i.ans2.append(-1)
+            i.ans3.append(-1)
+            i.save()
