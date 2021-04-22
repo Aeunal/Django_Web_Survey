@@ -38,11 +38,9 @@ def update_1(request):
         break
         
     if len(surveys) != 0:
-	random_photo = random.randint(0, len(surveys)-1)
-	photo_id = surveys[random_photo ].id
-        return HttpResponseRedirect("/photo/update/{}".format(photo_id))
+        rand_int = random.randint(0, len(surveys)-1)
+        surveys[rand_int].count = 0
+        surveys[rand_int].save()
+        return HttpResponseRedirect("/photo/update/{}".format(surveys[rand_int].id))
     else:
         return render(request, 'photo/no_survey.html')
-    
-
-
