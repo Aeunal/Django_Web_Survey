@@ -12,10 +12,10 @@ for clas in os.listdir(abs_path):
     for quest in os.listdir(new_abs_path):
       images = os.listdir(os.path.join(new_abs_path, quest))
       if quest == 'Q0_C1':
-        quality = 'kötü'
+        quality = 'kotu'
         type = 1
       elif quest == 'Q0_C2':
-        quality = 'kötü'
+        quality = 'kotu'
         type = 2
       elif quest == 'Q1_C1':
         quality = 'orta'
