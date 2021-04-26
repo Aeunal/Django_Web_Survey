@@ -31,8 +31,8 @@ ALLOWED_HOSTS = ["*"] #[os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in
 # Application definition
 
 INSTALLED_APPS = [
-    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
+    "whitenoise.runserver_nostatic",
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -83,7 +83,8 @@ DATABASES = {
         'NAME': os.environ['DBNAME'],
         'HOST': hostname + ".postgres.database.azure.com",
         'USER': os.environ['DBUSER'] + "@" + hostname,
-        'PASSWORD': os.environ['DBPASS']
+        'PASSWORD': os.environ['DBPASS'],
+        'PORT': '5432'
     }
 }
 
@@ -124,10 +125,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
-STATIC_URL = os.environ.get("DJANGO_STATIC_URL", "/static/")
-STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", "./static/") 
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+#STATIC_URL = 'os.environ.get("DJANGO_STATIC_URL", "/static/")
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", "./static/") 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'), os.environ.get("DJANGO_STATIC_ROOT", "./static/"), '/var/www/static/'
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
