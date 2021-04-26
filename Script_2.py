@@ -5,7 +5,7 @@ import random
 i = 1
 types = (1,2)
 gender = ('Bedroom', 'Livingroom', 'Bathroom', 'Kitchen')
-quality = ('kötü', 'orta', 'iyi')
+quality = ('kotu', 'orta', 'iyi')
 
 while True:
     if len(Photos.objects.filter(using_count=10)) >= len(Photos.objects.all())-23:
