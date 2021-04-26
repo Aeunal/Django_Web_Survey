@@ -3,7 +3,8 @@ from photo.models import Photos
 import os
 
 path = 'media/'
-abs_path = "C:/Users/furka/Desktop/form/media"
+#abs_path = "C:/Users/furka/Desktop/form/media"
+abs_path = os.path.join(os.getcwd(),"media")
 i = 1
 
 for clas in os.listdir(abs_path):
