@@ -1,207 +1,312 @@
 {% load static %}
 
 <html>
-  <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>label me</title>
-    <link rel="stylesheet" href="{% static 'css/update.css' %}">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  </head>
-  <style>
 
-  *{
-    box-sizing:border-box;
-    padding:0;
-    margin:0;
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>label me</title>
+  <link rel="stylesheet" href="{% static 'css/update.css' %}">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
   }
-  
-    .submit {
-      background-color: white; 
-      border: none;
-      color: black;
-      padding: 2vmin 2.5vmin;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 2.5vmin;
-    }
 
-    .questions {
-      background-repeat: no-repeat; 
-      background-size: auto; 
-      border: 3px solid #010801; 
-      border-radius: 3px; 
-      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-      background-color: cadetblue;
-      background-repeat: repeat; 
-      background-attachment: scroll;
-      background-clip: border-box;
-      background-size: cover;
-      object-fit:contain;
-      max-width: 85%;
-      margin-left: 7.5%;
-      margin-top: 3%;
-      margin-bottom: 5%;
-      padding-bottom: 2vmin;
-      text-align:center;
-      color: whitesmoke;
-    }
-    .questions .title {
-      font-size: 3vmax;
-      color: white;
-    }
-    .questions p {
-      font-size: 2vmax;
-      margin-top: 1%;
-    }
-    .questions input {
-      margin-top: 1%;
-    }
-    .container-fluid {
-      width:100%;
-      border:2px solid black;
-      display:grid;
-      height:100%;
-    }
-    .left {
-      display:flex;
-      flex-direction:column;
-      background-color: darkgray;
-      background-clip: border-box;
-      background-size: 100% 100%;
-      text-align: center; 
-      justify-content:flex-start;
-      padding-top: 3vh;
-    }
+  .submit {
+    background-color: white;
+    /*border: none;*/
+    color: black;
+    padding: 2vmin 2.5vmin;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.5vmin;
+  }
 
-    .image {
-      max-width: 90%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-    .image img {
-      width: 90%;
-      object-fit:contain;
-      border: 1px solid rgb(136, 125, 125); 
-      border-radius: 5px; 
-      box-shadow: 0 0 1px 1px rgba(0, 140, 186, 0.5);
-      margin-left: 5%;
-    }
-    .image .main_img{
-      border: none;
-      box-shadow: none;
-      border-radius: 5px; 
-      max-height: 75vh;
-      margin-left: 10%;
-    }
-    #customers {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      align-items: center;
-      width: 100%;
-      margin-top: 3vh;
-    }
+  .questions {
+    background-repeat: no-repeat;
+    background-size: auto;
+    border: 3px solid #010801;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 1px #9a9182;
+    background-color: #0071b9;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-size: cover;
+    object-fit: contain;
+    max-width: 85%;
+    margin-left: 7.5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-bottom: 2vmin;
+    text-align: center;
+    color: #010801;
+    font-weight: bold;
+    font-size: 2vmin;
+  }
 
-    #customers td, #customers th {
-      height: 3vh;
-      width: 100%;
-      border: 1px solid rgb(20, 2, 2);
-      padding: 2vh;
-    }
+  .questions .title {
+    font-size: 3vmax;
+    color: white;
+  }
 
-    #customers tr:nth-child(even){background-color: #a39f9f;}
-    #customers tr:nth-child(odd){background-color: #747171;}
-    #customers tr:hover {background-color: rgba(125, 167, 125, 0.534);}
+  .questions p {
+    font-size: 2vmax;
+    margin-top: 1%;
+  }
 
-    #customers th {
-      padding-top: 4vh;
-      padding-bottom: 800vh;
-      text-align: left;
-      background-color: #4CAF50;
-      color: rgb(236, 14, 14);
-    }
-  </style>
+  .questions input {
+    margin-top: 1%;
+  }
 
-  <body >
-    <div class="container-fluid" >
-        <div class="left" >
-          {% if photo.img %}
-            <div class="image">
-              <img src="{{ photo.img.url }}" class="main_img">
-            </div>
-          {% endif %}
-          <div style="overflow-x:auto;" class="questions">
-            <form method="Post">
-              {% csrf_token %}
-              <p>İlerleme Durumu: {{ survey.count }} / 24</p>                
-                <table id = "customers" border="">
-                
-                <tbody><tr align="CENTER">
-                <td width="75"> </td>
-                <td width="75"><b>20</b></td>
-                <td width="75"><b>40</b></td>
-                <td width="75"><b>60</b></td>
-                <td width="75"><b>80</b></td>
-                <td width="75"><b>100</b></td>
-                </tr>
-                
-                <tr align="CENTER">
-                <td align="LEFT">
-                <label for="id_answer1">Bu resim göze ne kadar hoş görünüyor?</label></td>
-                <td><input type="RADIO" value="20" id="id_answer1" name="answer1" required></td>
-                <td><input type="RADIO" value="40" id="id_answer1" name="answer1" required></td>
-                <td><input type="RADIO" value="60" id="id_answer1" name="answer1" required></td>
-                <td><input type="RADIO" value="80" id="id_answer1" name="answer1" required></td>
-                <td><input type="RADIO" value="100" id="id_answer1" name="answer1" required></td>
-                </tr>
-                
-                <tr align="CENTER">
-                <td align="LEFT">
-                <label for="id_answer2">Bu resmin ışık miktarı, netliği ve görüntü kalitesi ne kadar iyidir?</label></td>
-                <td><input type="RADIO" value="20" id="id_answer2" name="answer2" required></td>
-                <td><input type="RADIO" value="40" id="id_answer2" name="answer2" required></td>
-                <td><input type="RADIO" value="60" id="id_answer2" name="answer2" required></td>
-                <td><input type="RADIO" value="80" id="id_answer2" name="answer2" required></td>
-                <td><input type="RADIO" value="100" id="id_answer2" name="answer2" required></td>
-                </tr>
-                
-                <tr align="CENTER">
-                <td align="LEFT">
-                <label for="id_answer3" >Bu resim sizce evin görünen bölümü (oda, mutfak vs.) hakkında ne kadar bilgi veriyor? (planı, kullanılan malzemele tipi ve özellikleri)</label></td>
-                <td><input type="RADIO" value="20" id="id_answer3" name="answer3" required></td>
-                <td><input type="RADIO" value="40" id="id_answer3" name="answer3" required></td>
-                <td><input type="RADIO" value="60" id="id_answer3" name="answer3" required></td>
-                <td><input type="RADIO" value="80" id="id_answer3" name="answer3" required></td>
-                <td><input type="RADIO" value="100" id="id_answer3" name="answer3" required></td>
-                </tr>
-                
-                </tbody></table>
+  .container-fluid {
+    width: 100%;
+    border: 2px solid black;
+    display: grid;
+    height: 100%;
+  }
 
-                <input class="submit" type="submit" value="Sıradaki">
-                
-            </form>
-                
-            </form>
-          </div>
-        </div>      
+  .left {
+    display: flex;
+    flex-direction: column;
+    background-color: #caced1;
+    background-clip: border-box;
+    background-size: 100% 100%;
+    text-align: center;
+    justify-content: flex-start;
+    padding-top: 3vh;
+  }
+
+  .image {
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image img {
+    width: 90%;
+    object-fit: contain;
+    border: 1px solid rgb(136, 125, 125);
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px rgba(0, 140, 186, 0.5);
+    margin-left: 5%;
+  }
+
+  .image .main_img {
+    border: none;
+    box-shadow: none;
+    /*border-radius: 5px;*/
+    max-height: 75vh;
+    margin-left: 10%;
+  }
+
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    align-items: center;
+    width: 98%;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #customers td,
+  #customers th {
+    height: 3vh;
+    /*width: 100%;*/
+    border: 1px solid rgb(20, 2, 2);
+    padding: 2vh;
+  }
+
+  #customers td,
+  #customers th {
+    height: 3vh;
+    border: 1px solid rgb(20, 2, 2);
+    padding: 2vh;
+  }
+
+  /*
+    #customers th:nth-child(1){width: 100%;}
+    #customers th:nth-child(2){width: 100%;}
+    #customers th:nth-child(3){width: 100%;}
+    #customers th:nth-child(4){width: 100%;}
+    */
+
+  #customers tr:nth-child(1) { background-color: #a0a0a0; }
+  #customers tr:nth-child(2) { background-color: #c5c5c5; }
+  #customers tr:nth-child(3) { background-color: #c5c5c5; }
+  #customers tr:nth-child(4) { background-color: #c5c5c5; }
+
+  /*#customers tr:nth-child(even){background-color: #a39f9f;}
+    #customers tr:nth-child(odd){background-color: #747171;}*/
+  #customers tr:hover:nth-child(1) {
+    background-color: #a0a0a0;
+  }
+
+  /*rgba(44, 44, 44, 0.534);}*/
+  #customers tr:hover {
+    background-color: #cccccc;
+    ;
+  }
+
+  #customers th {
+    padding-top: 4vh;
+    padding-bottom: 800vh;
+    text-align: left;
+    background-color: #4CAF50;
+    color: rgb(236, 14, 14);
+  }
+
+  meter {
+    margin-top:1vmax;
+    width:100%; 
+    height: 15px;
+    box-shadow: 0 5px 5px -5px #999 inset;
+    background-color: whiteSmoke;
+    /*
+    background-image: linear-gradient(
+      90deg, 
+      #8bcf69 5%, 
+      #e6d450 5%,
+      #e6d450 15%,
+      #f28f68 15%,
+      #f28f68 55%,
+      #cf82bf 55%,
+      #cf82bf 95%,
+      #719fd1 95%,
+      #719fd1 100%
+    );*/
+    background-size: 100% 100%;
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<body>
+  <div class="container-fluid">
+    <div class="left">
+      <div style="
+      overflow-x:auto;
+      margin-top:5px;
+      color: white; 
+      padding-bottom: 0px;
+      font-size:2.5vmin;
+      font-family: Arial, Helvetica, sans-serif;" class="questions">
+        <p>İlerleme Durumu: {{ survey.count|add:"1" }} / 30</p>
+        <!--<progress id="file" value="32" max="100"> 32% </progress>-->
+        <meter id="survey_progress", min="0", max="30", value="{{ survey.count|add:'1' }}"></meter>
+      </div>
+      
+      {% if photo.img %} 
+      <div class="image">
+        <img src="{{ photo.img.url }}" class="main_img">
+        <div id="loading_screen" hidden style="
+          width:100%;
+          height:120%;
+          margin-left:10%;
+          position: fixed; 
+          background-color:rgba(73, 73, 73, 0.479)">
+          <div class="loader" style="
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:25%;"></div> 
+        </div>
+      </div>
+      {% endif %}
+      
+      
+      <div style="overflow-x:auto;" class="questions">
+        <form method="Post"> {% csrf_token %}
+          <table id="customers">
+            <tbody>
+              <tr style="text-align:center;font-size:1.7vmin;">
+                <td width="60%"> </td>
+                <td width="8%" ><b>0 %<br>(çok az)</b></td>
+                <td width="8%"><b>25 %<br>(az)</b></td>
+                <td width="8%"><b>50 %<br>(orta)</b></td>
+                <td width="8%"><b>75 %<br>(fazla)</b></td>
+                <td width="8%"><b>100 %<br>(çok fazla)</b></td>
+              </tr>
+
+              <tr style="text-align:center">
+                <td style="text-align:left">
+                  <strong style="font-size:2vmin;" for="id_answer1">Bu resim göze ne kadar hoş görünüyor?</strong>
+                </td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="20" id="id_answer1" name="answer1" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="40" id="id_answer1" name="answer1" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="60" id="id_answer1" name="answer1" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="80" id="id_answer1" name="answer1" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="100" id="id_answer1" name="answer1" required></td>
+              </tr>
+
+              <tr style="text-align:center">
+                <td style="text-align:left">
+                  <strong style="font-size:2vmin;" for="id_answer2">Bu resmin ışık miktarı, netliği ve görüntü kalitesi
+                    ne kadar iyidir?</strong>
+                </td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="20" id="id_answer2" name="answer2" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="40" id="id_answer2" name="answer2" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="60" id="id_answer2" name="answer2" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="80" id="id_answer2" name="answer2" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="100" id="id_answer2" name="answer2" required></td>
+              </tr>
+
+              <tr style="text-align:center">
+                <td style="text-align:left">
+                  <strong style="font-size:2vmin;" for="id_answer3">Bu resim sizce evin görünen bölümü (oda, mutfak vs.)
+                    hakkında ne kadar bilgi veriyor? <br> (planı, kullanılan malzemele tipi ve özellikleri)</strong>
+                </td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="20" id="id_answer3" name="answer3" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="40" id="id_answer3" name="answer3" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="60" id="id_answer3" name="answer3" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="80" id="id_answer3" name="answer3" required></td>
+                <td onclick="this.children[0].checked=true"><input type="RADIO" value="100" id="id_answer3" name="answer3" required></td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <button type="button" class="submit" onclick="javascript:history.go(-1)">Geri</button>
+          <input  class="submit" onsubmit="document.getElementById('loading_screen').hidden=false" type="submit" value="Sıradaki">
+        </form>
+      </div>
     </div>
-  
+  </div>
+
+
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 
   <script>
     function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-          }
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#blah')
+            .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

@@ -7,10 +7,13 @@ from django.urls import reverse
 import random
 
 
+max_survey_image_count = 30
+
 def update(request, id):
     survey = get_object_or_404(Counter, id=id)
-    if survey.count == 24:
-        return render(request, 'photo/finish.html')
+    if survey.count == max_survey_image_count:
+        context = {'survey': survey}
+        return render(request, 'photo/finish.html', context=context)
 
     photo = get_object_or_404(Photos, id=survey.ids[survey.count])
     form = UpdateForm(request.POST or None, request.FILES or None, instance=photo)
@@ -31,7 +34,7 @@ def update(request, id):
     return render(request, 'photo/template.html', context=context)
 
 def update_1(request):
-    for i in range(0, 24):
+    for i in range(0, max_survey_image_count):
         surveys = Counter.objects.filter(count=i)
         if len(surveys) == 0:
             continue

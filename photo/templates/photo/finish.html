@@ -12,16 +12,17 @@
     box-sizing:border-box;
     padding:0;
     margin:0;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
 
-    .questions {
+  .questions {
       background-repeat: no-repeat; 
       background-size: auto; 
       border: 3px solid #010801; 
       border-radius: 3px; 
-      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-      background-color: cadetblue;
+      box-shadow: 0 0 2px 1px #9a9182;
+      background-color: #0071b9;
       background-repeat: repeat; 
       background-attachment: scroll;
       background-clip: border-box;
@@ -34,6 +35,7 @@
       padding-bottom: 2vmin;
       text-align:center;
       color: whitesmoke;
+      padding: 25px;
     }
     .questions p {
       font-size: 2vmax;
@@ -49,7 +51,7 @@
     .left {
       display:flex;
       flex-direction:column;
-      background-color: darkgray;
+      background-color: #cde3f1;
       background-clip: border-box;
       background-size: 100% 100%;
       text-align: center; 
@@ -57,24 +59,61 @@
       padding-top: 3vh;
     }
 
-
   </style>
 
   <body >
+
     <div class="container-fluid" >
         <div class="left" >
           
-          <div style="overflow-x:auto;" class="questions">
-              <h1>Tebrikler Anketin Sonuna Geldiniz. Yardımlarınız İçin Teşekkür Ederiz.
+          <div style="overflow-x:auto;margin-bottom:2%;" class="questions">
+              <h1>Tebrikler Anketin Sonuna Geldiniz. Yardımlarınız İçin Teşekkür Ederiz.<br>
                   (Sayfayı Kapatabilirsiniz.)
-              </h1><br>
-              <h1>Furkan ÇELİK</h1>
+              </h1>
+              <br>
+              <h2>adesso Turkey</h2>
           </div>
-        </div>      
+
+          <h1> Kaydedilen bilgileri aşağıda bulabilirsiniz:</h1><br>
+          <div style="overflow-x:auto;margin-top:1%;" class="questions">
+            <h2>
+            {{survey.id}} Nolu ankette {{survey.count}} soru cevaplanmıştır. <br>
+            Fotolar:{{survey.ids}}<br>
+            1.Cevaplar:{{survey.ans1}}<br>
+            2.Cevaplar:{{survey.ans2}}<br>
+            3.Cevaplar:{{survey.ans3}}<br>
+            </h2>
+
+            <input hidden id="summary_text" type="text" value="{{survey.id}} Nolu ankette {{survey.count}} soru cevaplanmıştır.;Fotolar:{{survey.ids}};1.Cevaplar:{{survey.ans1}};2.Cevaplar:{{survey.ans2}};3.Cevaplar:{{survey.ans3}}" >
+            <button style="overflow-x:auto;margin-top:1%;padding:5px;" onclick="
+              var copyText = document.getElementById('summary_text');
+              copyText.hidden=false;
+              copyText.select();copyText.setSelectionRange(0, 99999);
+              document.execCommand('copy');
+              copyText.hidden=true;">
+                Kopyala
+              </button>  
+          </div>    
+            
+        </div>
+        
     </div>
+
+    <script src="{% static 'js/bootstrap.min.js' %}">
+      
+      function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("summary_text");
+        /* Select the text field */
+        copyText.hidden=false;
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+      } 
+    </script>
   
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-
   </body>
 </html>

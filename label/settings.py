@@ -75,18 +75,31 @@ WSGI_APPLICATION = 'label.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-hostname = os.environ['DBHOST']
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DBNAME'],
-        'HOST': hostname + ".postgres.database.azure.com",
-        'USER': os.environ['DBUSER'] + "@" + hostname,
-        'PASSWORD': os.environ['DBPASS']
-        #, 'PORT': '5432'
+server = False
+if server:
+    hostname = os.environ['DBHOST']
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['DBNAME'],
+            'USER': os.environ['DBUSER'] + "@" + hostname,
+            'PASSWORD': os.environ['DBPASS'],
+            'HOST': hostname + ".postgres.database.azure.com"
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'photos',
+            'USER': 'postgres',
+            'PASSWORD': '123321',
+            'HOST': '127.0.0.1',
+            'PORT': '5432'
+        }
+    }
 
 
 # Password validation
