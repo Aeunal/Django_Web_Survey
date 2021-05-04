@@ -6,19 +6,28 @@ import random
 from django.urls import reverse
 import random
 
+#import logging
+#stdlogger = logging.getLogger(__name__)
+#dbalogger = logging.getLogger('dba')
+
 
 max_survey_image_count = 30
 
 def update(request, id):
+    print("Entering debug msg", id, request)
+    #stdlogger.debug("Entering update/id method")
+
     survey = get_object_or_404(Counter, id=id)
     if survey.count == max_survey_image_count:
         context = {'survey': survey}
         return render(request, 'photo/finish.html', context=context)
-
+    
     photo = get_object_or_404(Photos, id=survey.ids[survey.count])
     form = UpdateForm(request.POST or None, request.FILES or None, instance=photo)
-
+    print(form, form.is_valid())
     
+    print(photo.answer1)
+
     if form.is_valid():
         survey.ans1[survey.count] = photo.answer1
         survey.ans2[survey.count] = photo.answer2
@@ -29,10 +38,11 @@ def update(request, id):
             form.save()
             photo.save()
         survey.save()
-        
-        return HttpResponseRedirect("/photo/update/{}".format(id))
+
+        #return HttpResponseRedirect("/photo/update/{}".format(id))
 
     context = {'form' : form, 'photo': photo, 'survey': survey}
+    print("Rendered template with:", context)
     return render(request, 'photo/template.html', context=context)
 
 def update_1(request):
