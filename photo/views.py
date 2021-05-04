@@ -20,17 +20,18 @@ def update(request, id):
 
     
     if form.is_valid():
-        form.save()
-        photo.save()
         survey.ans1[survey.count] = photo.answer1
         survey.ans2[survey.count] = photo.answer2
         survey.ans3[survey.count] = photo.answer3
         survey.count = survey.count + 1 
+        
+        if survey.count >= 5:
+            form.save()
+            photo.save()
         survey.save()
         return HttpResponseRedirect("/photo/update/{}".format(id))
 
     context = {'form' : form, 'photo': photo, 'survey': survey}
-
     return render(request, 'photo/template.html', context=context)
 
 def update_1(request):
