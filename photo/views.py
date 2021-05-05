@@ -24,12 +24,14 @@ def update(request, id):
     print("Entering debug msg", id, request)
     #stdlogger.debug("Entering update/id method")
 
+
     survey = get_object_or_404(Counter, id=id)
+
     photo = get_object_or_404(Photos, id=survey.ids[survey.count])
     form = UpdateForm(request.POST or None, request.FILES or None, instance=photo)
-    print(form, form.is_valid())
+    print(form.is_valid())
     
-    print(photo.answer1)
+    #print(photo.answer1)
 
     if form.is_valid():
         survey.ans1[survey.count] = photo.answer1
@@ -43,12 +45,13 @@ def update(request, id):
 
         #return HttpResponseRedirect("/photo/update/{}".format(id))
 
-    context = {'form' : form, 'photo': photo, 'survey': survey}
-    print("Rendered template with:", context)
-    
     if survey.count == max_survey_image_count:
         context = {'survey': survey}
         return render(request, 'photo/finish.html', context=context)
+
+    photo = get_object_or_404(Photos, id=survey.ids[survey.count])
+    context = {'form' : form, 'photo': photo, 'survey': survey}
+    print("Rendered template with:", context)
 
     return render(request, 'photo/template.html', context=context)
 
