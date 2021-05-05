@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'label.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-server = False
+server = True
 if server:
     hostname = os.environ['DBHOST']
 
