@@ -74,14 +74,18 @@
               <h2>adesso Turkey</h2>
           </div>
 
-          <h1> Ödül için aşağıda bulunan anket kodunu en alttaki form içine yapıştırarak gönderiniz.</h1><br>
-          <div style="overflow-x:auto;margin-top:1%;margin-bottom:1%;" class="questions">
+          <h1> Kaydedilen bilgileri aşağıda bulabilirsiniz:</h1><br>
+          <div style="overflow-x:auto;margin-top:1%;" class="questions">
             <h2>
-            {{cyrb53("adesso_"+survey.id)}} 
+            {{survey.id}} Nolu ankette {{survey.count}} soru cevaplanmıştır. <br>
+            Fotolar:{{survey.ids}}<br>
+            1.Cevaplar:{{survey.ans1}}<br>
+            2.Cevaplar:{{survey.ans2}}<br>
+            3.Cevaplar:{{survey.ans3}}<br>
             </h2>
 
-            <input hidden id="summary_text" type="text" value="{{cyrb53("adesso_"+survey.id)}}" >
-            <button style="overflow-x:auto;margin-top:1%;margin-bottom:1%;padding:5px" onclick="
+            <input hidden id="summary_text" type="text" value="{{survey.id}} Nolu ankette {{survey.count}} soru cevaplanmıştır.;Fotolar:{{survey.ids}};1.Cevaplar:{{survey.ans1}};2.Cevaplar:{{survey.ans2}};3.Cevaplar:{{survey.ans3}}" >
+            <button style="overflow-x:auto;margin-top:1%;padding:5px;" onclick="
               var copyText = document.getElementById('summary_text');
               copyText.hidden=false;
               copyText.select();copyText.setSelectionRange(0, 99999);
@@ -91,28 +95,12 @@
               </button>  
           </div>    
             
-          <div style="overflow-x:auto; margin-top:1px" class="questions">
-              <iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVc1PdlnzUecer8xF59W63uOUYArvrhKrbdMpgsBpIdUMU9MRzc0SjY0WVlKWFI2N1RDUllQTDExVy4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
-          </div>
-
         </div>
         
     </div>
 
     <script src="{% static 'js/bootstrap.min.js' %}">
       
-      const cyrb53 = function(str, seed = 0) {
-          let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
-          for (let i = 0, ch; i < str.length; i++) {
-              ch = str.charCodeAt(i);
-              h1 = Math.imul(h1 ^ ch, 2654435761);
-              h2 = Math.imul(h2 ^ ch, 1597334677);
-          }
-          h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
-          h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
-          return 4294967296 * (2097151 & h2) + (h1>>>0);
-      };
-
       function myFunction() {
         /* Get the text field */
         var copyText = document.getElementById("summary_text");
