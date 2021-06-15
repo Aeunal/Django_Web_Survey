@@ -5,6 +5,11 @@
     <title>label me</title>
     <link rel="stylesheet" href="{% static 'css/update.css' %}">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">  
+      function selam() {   
+          alert("how are you");  
+      };  
+    </script>
   </head>
   <style>
 
@@ -89,6 +94,10 @@
               copyText.hidden=true;">
                 Kopyala
               </button>  
+            
+              <button style="overflow-x:auto;margin-top:1%;margin-bottom:1%;padding:5px" onclick="selam()">
+                  Selam
+              </button>
           </div>    
             
           <div style="overflow-x:auto; margin-top:1px" class="questions">
