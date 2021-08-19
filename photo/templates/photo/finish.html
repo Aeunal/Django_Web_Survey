@@ -86,36 +86,6 @@
               <h2>adesso Turkey ArGe Departmanı</h2>
           </div>
 
-          <h1> Çekilişe katılmak için aşağıda bulunan tek kullanımlık kodu en alttaki form içine yapıştırarak gönderiniz.</h1><br>
-          <div style="overflow-x:auto;margin-top:1%;margin-bottom:1%;" class="questions">
-            <h2 id="demo">
-            {{survey.id}} 
-            </h2>
-
-            <script>
-              document.getElementById("demo").innerHTML = cyrb53("adesso_"+{{survey.id}});
-            </script>
-            
-            <input hidden id="summary_text" type="text" value="error:{{survey.id}}" >
-            
-            <script>
-              document.getElementById("summary_text").value = cyrb53("adesso_"+{{survey.id}});
-            </script>
-            
-            <button style="overflow-x:auto;margin-top:1%;margin-bottom:1%;padding:5px" onclick="
-              var copyText = document.getElementById('summary_text');
-              copyText.hidden=false;
-              copyText.select();copyText.setSelectionRange(0, 99999);
-              document.execCommand('copy');
-              copyText.hidden=true;">
-                Kopyala
-              </button>  
-          </div>    
-            
-          <div style="overflow-x:auto; margin-top:1px" class="questions">
-              <iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVc1PdlnzUecer8xF59W63uOUYArvrhKrbdMpgsBpIdUMU9MRzc0SjY0WVlKWFI2N1RDUllQTDExVy4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
-          </div>
-
         </div>
         
     </div>
